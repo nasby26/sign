@@ -11,8 +11,13 @@ const home = require('./src/routes/home');
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-// use -> middleware를 등록하는 메서드
-app.use(express.static(`${__dirname}/src/public`)); // 정적경로 생성 관련 
+
+// 정적경로 생성 관련
+app.use(express.static(`${__dirname}/src/public`));
+// JSON 데이터 파싱용도
+app.use(express.json());
+// 데이터 인코딩 문제 해결
+app.use(express.urlencoded({ extended: true })); 
 app.use("/", home);
 
 module.exports = app;
