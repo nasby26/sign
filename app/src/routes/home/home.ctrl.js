@@ -1,5 +1,10 @@
 'use strict';
 
+const users = {
+  id: ['nasby', 'sangari', 'tangza'],
+  pw: ['1234', '1234', '123456'],
+}
+
 const output = {
   home: (req, res) => {
     res.render('home/index');
@@ -11,7 +16,23 @@ const output = {
 
 const process = {
   login: (req, res) => {
-    console.log(req.body); // 프론트엔드에서 전달한 req 데이터
+    const id = req.body.id
+    const pw = req.body.pw
+
+    if (users.id.includes(id)) {
+      const idx = users.id.indexOf(id);
+      if (users.pw[idx] === pw) {
+        return res.json({
+          success: true,
+          msg: "로그인에 성공하셨습니다.",
+        });
+      }
+    }
+
+    return res.json({
+      success: false,
+      msg: "로그인에 실패하셨습니다.",
+    })
   },
 }
 
