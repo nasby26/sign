@@ -2,6 +2,7 @@
 
 const User = require('../../models/User');
 
+// get
 const output = {
   home: (req, res) => {
     res.render('home/index');
@@ -9,8 +10,12 @@ const output = {
   login: (req, res) => {
     res.render('home/login');
   },
+  register: (req, res) => {
+    res.render('home/register');
+  }
 }
 
+// post
 const process = {
   login: (req, res) => {
     const user = new User(req.body);
